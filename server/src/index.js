@@ -13,7 +13,9 @@ import { canPlaceBid, formatKickoffIST, parseKickoffIST, todayIST } from './time
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const JWT_SECRET = process.env.JWT_SECRET || 'wc26-local-dev-secret-change-in-production';
 const PORT = process.env.PORT || 3001;
-const uploadsDir = join(__dirname, '..', 'uploads');
+const uploadsDir =
+  process.env.UPLOADS_DIR ||
+  (process.env.DATA_DIR ? join(process.env.DATA_DIR, 'uploads') : join(__dirname, '..', 'uploads'));
 if (!existsSync(uploadsDir)) mkdirSync(uploadsDir, { recursive: true });
 
 initDb();

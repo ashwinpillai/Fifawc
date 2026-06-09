@@ -2,6 +2,9 @@
   "name": "fifa-wc-2026-bidding-pool",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22.5.0"
+  },
   "scripts": {
     "install:all": "npm install && cd server && npm install && cd ../client && npm install",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",

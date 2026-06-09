@@ -1,10 +1,12 @@
 import { DatabaseSync } from 'node:sqlite';
-import { readFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbPath = join(__dirname, '..', 'wc26.db');
+const dataDir = process.env.DATA_DIR || join(__dirname, '..');
+if (!existsSync(dataDir)) mkdirSync(dataDir, { recursive: true });
+const dbPath = join(dataDir, 'wc26.db');
 const db = new DatabaseSync(dbPath);
 
 db.exec('PRAGMA journal_mode = WAL');

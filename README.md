@@ -56,6 +56,23 @@ Share with friends: `http://<YOUR-IP>:3001` (e.g. `http://192.168.1.42:3001`).
 
 > **Windows Firewall:** Allow Node.js through the firewall when prompted, or add an inbound rule for port 3001.
 
+## Publish online with Render
+
+This app needs a Node server for `/api/*`, SQLite storage, and avatar uploads, so GitHub Pages alone is not enough.
+
+1. Push this repository to GitHub.
+2. In Render, create a new Blueprint and connect `ashwinpillai/Fifawc`.
+3. Render will read `render.yaml` and create one Node web service.
+4. Use a paid instance type that supports the persistent disk. The disk stores `wc26.db` and uploaded avatars at `/var/data`.
+5. After the deploy finishes, open the Render URL and visit `/admin` to create the first admin account.
+
+The deploy uses:
+
+- Build command: `npm run install:all && npm run build`
+- Start command: `npm start`
+- Persistent data directory: `/var/data`
+- Generated `JWT_SECRET`
+
 ## Usage
 
 1. **You (admin):** Visit `/admin`, create admin account, log in after matches to set winners.
