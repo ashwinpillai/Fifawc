@@ -1,0 +1,9 @@
+node_modules/
+dist/
+server/wc26.db
+server/wc26.db-wal
+server/wc26.db-shm
+server/uploads/*
+!server/uploads/.gitkeep
+.env
+*.log
